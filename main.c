@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "stdlib.h"
 
-void trup(int n, int m, float M[n][m]) {
+void trup(int n, int m, float** M) {
     for (int j = 0; j < n; j++) {
         int i = j;
         while (M[i][j] == 0)
@@ -21,7 +21,7 @@ void trup(int n, int m, float M[n][m]) {
     }
 }
 
-void trdown(int n, int m, float M[n][m]) {
+void trdown(int n, int m, float** M) {
     for (int j = n - 1; j >= 0; j--) {
         int i = j;
         while (M[i][j] == 0)
@@ -44,7 +44,10 @@ int main() {
     int n;
     scanf("%d", &n);
     const int row=n, col = 2*n;
-    float ma[row][col];
+    float** ma = malloc(row*sizeof(float*));
+    for(int e=0;e<row;e++)
+        ma[e]=malloc(col*sizeof(float));
+
 
     int i, j;
     for (i = 0; i < n; i++)
